@@ -1,0 +1,41 @@
+name: Pull Request Checks
+on:
+  pull_request:
+    branches: [ main, develop ]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Make Maven Wrapper executable
+        run: chmod +x ./mvnw
+      - name: Run Checkstyle
+        run: ./mvnw checkstyle:check
+      - name: Build with Maven Wrapper
+        run: ./mvnw clean install -DskipTests
+      - name: Run tests
+        run: ./mvnw test -Dspring.profiles.active=test
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: target/surefire-reports/
+      - name: Upload Checkstyle Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Checkstyle Results
+          path: target/checkstyle-result.xml
