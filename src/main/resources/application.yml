@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: event-app
+
+  datasource:
+    url: jdbc:postgresql://db:5432/event_app_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    change-log: db/changelog.xml
+
+security:
+  jwt:
+    token:
+      secret-key: cfc9a09cb31c71615925087cd9496ce309065bfff49f815d63a3847afb575d24
+      expiration-time: 86400000
+

@@ -1,18 +1,15 @@
 package com.event_app.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
 @Entity
 @AllArgsConstructor
@@ -20,18 +17,15 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Builder
-@Accessors(chain = true)
-public class Event {
+public class EventAddress {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
-  private String description;
-  private LocalDateTime date;
-  @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
-  private EventAddress address;
-  private Integer availableTickets;
-  private Double ticketPrice;
-  private Boolean adult;
+  private String city;
+  private String street;
+  private String postCode;
+  @OneToOne
+  private Event event;
 }

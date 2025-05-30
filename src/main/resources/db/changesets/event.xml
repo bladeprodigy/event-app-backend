@@ -1,0 +1,21 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="creating_event_table" author="aleks.galeza">
+    <createTable tableName="event">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="name" type="VARCHAR"/>
+      <column name="description" type="VARCHAR"/>
+      <column name="date" type="TIMESTAMP"/>
+      <column name="available_tickets" type="INT"/>
+      <column name="ticket_price" type="DOUBLE"/>
+      <column name="adult" type="BOOLEAN"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

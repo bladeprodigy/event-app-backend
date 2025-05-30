@@ -1,0 +1,20 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="creating_event_address_table" author="aleks.galeza">
+    <createTable tableName="event_address">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="name" type="VARCHAR"/>
+      <column name="city" type="VARCHAR"/>
+      <column name="street" type="VARCHAR"/>
+      <column name="post_code" type="VARCHAR"/>
+      <column name="event_id" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
