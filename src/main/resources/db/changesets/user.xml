@@ -10,9 +10,11 @@
         <constraints primaryKey="true"/>
       </column>
       <column name="email" type="VARCHAR"/>
+      <column name="password" type="VARCHAR"/>
       <column name="name" type="VARCHAR"/>
       <column name="surname" type="VARCHAR"/>
       <column name="role" type="VARCHAR"/>
+      <column name="phone_number" type="VARCHAR"/>
     </createTable>
   </changeSet>
 

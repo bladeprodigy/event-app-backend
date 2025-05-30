@@ -6,5 +6,6 @@
   <include file="changesets/user.xml" relativeToChangelogFile="true"/>
   <include file="changesets/event.xml" relativeToChangelogFile="true"/>
   <include file="changesets/eventAddress.xml" relativeToChangelogFile="true"/>
+  <include file="changesets/ticket.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

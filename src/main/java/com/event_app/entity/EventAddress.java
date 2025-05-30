@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 @Entity
 @AllArgsConstructor
@@ -17,10 +18,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Accessors(chain = true)
 public class EventAddress {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
   private String city;

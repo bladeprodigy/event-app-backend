@@ -42,6 +42,8 @@ public class EventService {
         .adult(dto.adult())
         .build();
 
+    repository.save(event);
+
     var eventAddress = eventAddressService.createEventAddress(dto.address(), event);
     event.setAddress(eventAddress);
     return EventMapper.toDto(event);
@@ -51,13 +53,21 @@ public class EventService {
     log.info("Updating event with id {}", id);
     var event = findEventById(id);
 
-    event.setName(dto.name()).setDescription(dto.description()).setDate(dto.date())
-        .setAvailableTickets(dto.availableTickets()).setTicketPrice(dto.ticketPrice())
+    event.setName(dto.name())
+        .setDescription(dto.description())
+        .setDate(dto.date())
+        .setAvailableTickets(dto.availableTickets())
+        .setTicketPrice(dto.ticketPrice())
         .setAdult(dto.adult());
 
     if (dto.address() != null) {
-      var eventAddress = eventAddressService.createEventAddress(dto.address(), event);
-      event.setAddress(eventAddress);
+      if (dto.address().id() != null) {
+        var eventAddress = eventAddressService.updateEventAddress(dto.address(), event);
+        event.setAddress(eventAddress);
+      } else {
+        var eventAddress = eventAddressService.createEventAddress(dto.address(), event);
+        event.setAddress(eventAddress);
+      }
     }
 
     return EventMapper.toDto(repository.save(event));
