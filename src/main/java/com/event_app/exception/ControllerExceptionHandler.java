@@ -56,7 +56,7 @@ public class ControllerExceptionHandler {
   protected ResponseEntity<CustomError> handleEntityNotFoundException(EntityNotFoundException ex) {
     log.warn("Entity not found", ex);
     CustomError customError = new CustomError(
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.NOT_FOUND,
         ex.getMessage(),
         LocalDateTime.now()
     );

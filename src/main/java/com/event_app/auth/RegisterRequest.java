@@ -1,13 +1,16 @@
 package com.event_app.auth;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
+@Builder
 public record RegisterRequest(
-    @Email(
-        message = "Email should be valid and not blank."
-    )
+    @Email(message = "Email should be valid and not blank.")
+    @Size(min = 7, max = 50, message = "Email should be valid and not blank.")
+    @NotNull(message = "Email should be valid and not blank.")
     String email,
     @Pattern(
         regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
@@ -15,6 +18,9 @@ public record RegisterRequest(
             "Password must be at least 8 characters long, contain at least one uppercase letter,"
                 + " one lowercase letter, one digit, and one special character."
     )
+    @NotNull(message =
+        "Password must be at least 8 characters long, contain at least one uppercase letter,"
+            + " one lowercase letter, one digit, and one special character.")
     String password,
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters long.")
     String name,
